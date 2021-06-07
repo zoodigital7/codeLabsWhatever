@@ -9,43 +9,48 @@ import { ShoppingListService } from "../shopping-list/shopping-list.service";
 export class RecipeService {
   recipesChanged = new Subject<Recipe[]>();
 
-  private recipes: Recipe[] = [
-    new Recipe(
-      "Mac & Cheese Grilled Cheese",
-      "Cheese upon cheese upon cheese",
-      "https://i.imgur.com/RE1xBRe.png",
-      [
-        new Ingredient("Cheese", 1),
-        new Ingredient("More Cheese", 3),
-        new Ingredient("Bacon", 3),
-        new Ingredient("More Bacon", 13),
-      ]
-    ),
-    new Recipe(
-      "A Test Recipe",
-      "This is simply a test",
-      "https://i.imgur.com/RE1xBRe.png",
-      [
-        new Ingredient("Cheese", 1),
-        new Ingredient("More Cheese", 3),
-        new Ingredient("Bacon", 3),
-        new Ingredient("More Bacon", 13),
-      ]
-    ),
-    new Recipe(
-      "A Test Recipe",
-      "This is simply a test",
-      "https://i.imgur.com/RE1xBRe.png",
-      [
-        new Ingredient("Cheese", 1),
-        new Ingredient("More Cheese", 3),
-        new Ingredient("Bacon", 3),
-        new Ingredient("More Bacon", 13),
-      ]
-    ),
-  ];
-
+  // private recipes: Recipe[] = [
+  //   new Recipe(
+  //     "Mac & Cheese Grilled Cheese",
+  //     "Cheese upon cheese upon cheese",
+  //     "https://i.imgur.com/RE1xBRe.png",
+  //     [
+  //       new Ingredient("Cheese", 1),
+  //       new Ingredient("More Cheese", 3),
+  //       new Ingredient("Bacon", 3),
+  //       new Ingredient("More Bacon", 13),
+  //     ]
+  //   ),
+  //   new Recipe(
+  //     "A Test Recipe",
+  //     "This is simply a test",
+  //     "https://i.imgur.com/RE1xBRe.png",
+  //     [
+  //       new Ingredient("Cheese", 1),
+  //       new Ingredient("More Cheese", 3),
+  //       new Ingredient("Bacon", 3),
+  //       new Ingredient("More Bacon", 13),
+  //     ]
+  //   ),
+  //   new Recipe(
+  //     "A Test Recipe",
+  //     "This is simply a test",
+  //     "https://i.imgur.com/RE1xBRe.png",
+  //     [
+  //       new Ingredient("Cheese", 1),
+  //       new Ingredient("More Cheese", 3),
+  //       new Ingredient("Bacon", 3),
+  //       new Ingredient("More Bacon", 13),
+  //     ]
+  //   ),
+  // ];
+  private recipes: Recipe[] = []
   constructor(private slService: ShoppingListService) {}
+
+  setRecipes(recipes: Recipe[]) {
+    this.recipes = recipes
+    this.recipesChanged.next(this.recipes.slice())
+  }
 
   getRecipes() {
     return this.recipes.slice();
